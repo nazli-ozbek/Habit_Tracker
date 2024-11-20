@@ -1,30 +1,39 @@
 package com.example.habittracker.adapter
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import android.widget.TextView
 
-class HabitAdapter(private val habits: List<String>) : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.habittracker.data.model.Habit
+import com.example.habittracker.databinding.HabitItemBinding
+
+class HabitAdapter : ListAdapter<Habit, HabitAdapter.HabitViewHolder>(HabitDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_1, parent, false)
-        return HabitViewHolder(view)
+        val binding = HabitItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HabitViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        holder.bind(habits[position])
+        val habit = getItem(position)
+        holder.bind(habit)
     }
 
-    override fun getItemCount(): Int {
-        return habits.size
+    class HabitViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(habit: Habit) {
+            binding.habit = habit
+            binding.executePendingBindings()
+        }
     }
 
-    class HabitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val habitTextView: TextView = itemView.findViewById(android.R.id.text1)
+    class HabitDiffCallback : DiffUtil.ItemCallback<Habit>() {
+        override fun areItemsTheSame(oldItem: Habit, newItem: Habit): Boolean {
+            return oldItem.name == newItem.name
+        }
 
-        fun bind(habit: String) {
-            habitTextView.text = habit
+        override fun areContentsTheSame(oldItem: Habit, newItem: Habit): Boolean {
+            return oldItem == newItem
         }
     }
 }
