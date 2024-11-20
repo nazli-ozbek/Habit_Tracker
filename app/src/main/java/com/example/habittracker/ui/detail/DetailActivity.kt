@@ -1,4 +1,4 @@
 package com.example.habittracker.ui.detail
 
-class DetailFragment {
+class DetailActivity {
 }
