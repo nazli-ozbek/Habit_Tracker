@@ -5,7 +5,7 @@ import java.util.Date
 
 data class Habit(
     val name: String,
-    val startDate: Date,
-    var streak: Int = 0,
+    val description:String,
+    var startDate: Date,
     val completedDates: MutableList<LocalDate> = mutableListOf()
 )

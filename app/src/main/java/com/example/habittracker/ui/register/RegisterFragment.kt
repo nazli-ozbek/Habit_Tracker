@@ -1,35 +1,43 @@
-package com.example.habittracker.ui.register
+package com.example.habittracker.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.habittracker.R
 import com.example.habittracker.databinding.FragmentRegisterBinding
 import com.example.habittracker.viewmodel.UserViewModel
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private val viewModel: UserViewModel by viewModels()
+    private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
-        return binding.root
-    }
+    ): View? {
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         binding.registerButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)  // Direct navigation using action ID
+            val username = binding.registerUsernameEditText.text.toString()
+            val password = binding.registerPasswordEditText.text.toString()
+
+            viewModel.register(username, password) { success, error ->
+                if (success) {
+                    view?.findNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                } else {
+                    Toast.makeText(context, "Registration failed: $error", Toast.LENGTH_LONG).show()
+                }
+            }
         }
+
+        return binding.root
     }
 }

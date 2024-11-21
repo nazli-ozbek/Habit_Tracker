@@ -1,61 +1,71 @@
-package com.example.habittracker.ui.detail
+package com.example.habittracker.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import com.example.habittracker.R
-import com.example.habittracker.data.model.Habit
-import com.example.habittracker.databinding.FragmentHabitDetailBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.util.Date
-import java.util.Locale
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HabitDetailFragment : Fragment() {
-    private lateinit var binding: FragmentHabitDetailBinding
-    private val viewModel: com.example.habittracker.viewmodel.HabitViewModel by viewModels()
+
+    private lateinit var habitNameEditText: EditText
+    private lateinit var habitDescriptionEditText: EditText
+    private lateinit var habitDateEditText: EditText
+    private lateinit var saveButton: Button
+    private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_habit_detail,
-            container,
-            false
-        )
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_habit_detail, container, false)
 
-        return binding.root
+        habitNameEditText = view.findViewById(R.id.habitNameEditText)
+        habitDescriptionEditText = view.findViewById(R.id.habitDescriptionEditText)
+        habitDateEditText = view.findViewById(R.id.habitDateEditText)
+        saveButton = view.findViewById(R.id.saveButton)
+
+        saveButton.setOnClickListener { saveHabit() }
+
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+    private fun saveHabit() {
+        val habitName = habitNameEditText.text.toString().trim()
+        val habitDescription = habitDescriptionEditText.text.toString().trim()
+        val habitDate = habitDateEditText.text.toString().trim()
 
-        binding.saveButton.setOnClickListener {
-            val name = binding.habitNameEditText.text.toString()
-            val startDateString = binding.habitStartDateEditText.text.toString()
-
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val startDate: Date = try {
-                dateFormat.parse(startDateString)
-                    ?: throw IllegalArgumentException("Invalid date format")
-            } catch (e: Exception) {
-                null
-            } ?: return@setOnClickListener
-
-            val newHabit = Habit(name, startDate)
-            val currentHabits = viewModel.habitList.value?.toMutableList() ?: mutableListOf()
-            currentHabits.add(newHabit)
-            viewModel.habitList.value = currentHabits
+        if (habitName.isEmpty() || habitDate.isEmpty()) {
+            Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
+            return
         }
 
+        if (!habitDate.matches(Regex("\\d{4}-\\d{2}-\\d{2}"))) {
+            Toast.makeText(context, "Invalid date format! Use YYYY-MM-DD.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val habitData = mapOf(
+            "name" to habitName,
+            "description" to habitDescription,
+            "date" to habitDate,
+            "userId" to firebaseAuth.currentUser?.uid
+        )
+
+        firestore.collection("habits")
+            .add(habitData)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Habit saved!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Error saving habit", Toast.LENGTH_SHORT).show()
+            }
     }
 }
