@@ -36,6 +36,10 @@
 
     <fragment
         android:id="@+id/habitDetailFragment"
-        android:name="com.example.habittracker.ui.HabitDetailFragment"
-        android:label="Habit Detail" />
+        android:name="com.example.habittracker.ui.detail.HabitDetailFragment"
+        android:label="Habit Detail">
+        <action
+            android:id="@+id/action_habitDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

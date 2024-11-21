@@ -1,4 +1,4 @@
-package com.example.habittracker.ui
+package com.example.habittracker.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.habittracker.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -63,6 +64,7 @@ class HabitDetailFragment : Fragment() {
             .add(habitData)
             .addOnSuccessListener {
                 Toast.makeText(context, "Habit saved!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_habitDetailFragment_to_mainFragment)
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Error saving habit", Toast.LENGTH_SHORT).show()

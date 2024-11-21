@@ -4,8 +4,8 @@ import java.time.LocalDate
 import java.util.Date
 
 data class Habit(
-    val name: String,
-    val description:String,
-    var startDate: Date,
+    val name: String = "",
+    val description: String = "",
+    var startDate: Date = Date(),
     val completedDates: MutableList<LocalDate> = mutableListOf()
 )

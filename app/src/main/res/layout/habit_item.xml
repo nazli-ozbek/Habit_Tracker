@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="habit"
@@ -11,49 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Habit Name -->
         <TextView
-            android:id="@+id/habitName"
+            android:id="@+id/habitNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{habit.name}"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp" />
+            android:layout_margin="8dp" />
 
-        <!-- Habit Description -->
         <TextView
-            android:id="@+id/habitDescription"
+            android:id="@+id/habitDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{habit.description}"
-            app:layout_constraintTop_toBottomOf="@id/habitName"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/habitNameTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
 
-        <!-- Habit Start Date -->
         <TextView
-            android:id="@+id/habitStartDate"
+            android:id="@+id/habitDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Started on: " + habit.startDate.toString()}'
-            app:layout_constraintTop_toBottomOf="@id/habitDescription"
+            app:formattedDate="@{habit.startDate}"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/habitDescriptionTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp" />
-
-        <!-- Habit Streak -->
-        <TextView
-            android:id="@+id/habitStreak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text='@{"Streak: " + habit.completedDates.size}'
-            app:layout_constraintTop_toBottomOf="@id/habitStartDate"
-            app:layout_constraintStart_toStartOf="parent"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
