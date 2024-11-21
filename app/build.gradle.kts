@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 
 }
 
@@ -60,6 +61,7 @@ android {
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
         implementation("androidx.databinding:databinding-runtime:7.0.4")
+        kapt("androidx.lifecycle:lifecycle-compiler:2.3.1")
     }
 }
 dependencies {
