@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs.kotlin")
 
 }
 
@@ -60,4 +61,9 @@ android {
         androidTestImplementation(libs.androidx.espresso.core)
         implementation("androidx.databinding:databinding-runtime:7.0.4")
     }
+}
+dependencies {
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.database.ktx)
 }

@@ -12,21 +12,20 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!--android:text="@={viewModel.username}" android:text="@={viewModel.password}" -->
         <EditText
             android:id="@+id/registerUsernameEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:hint="Username"
-            />
+            android:text="@={viewModel.username}" />
 
         <EditText
             android:id="@+id/registerPasswordEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="68dp"
             android:hint="Password"
             android:inputType="textPassword"
-            />
+            android:text="@={viewModel.password}" />
 
         <Button
             android:id="@+id/registerButton"
