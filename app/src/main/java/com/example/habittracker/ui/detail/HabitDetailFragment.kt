@@ -9,7 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import com.example.habittracker.R
+import com.example.habittracker.data.model.Habit
 import com.example.habittracker.databinding.FragmentHabitDetailBinding
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Date
+import java.util.Locale
 
 class HabitDetailFragment : Fragment() {
     private lateinit var binding: FragmentHabitDetailBinding
@@ -35,7 +40,22 @@ class HabitDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.saveButton.setOnClickListener {
+            val name = binding.habitNameEditText.text.toString()
+            val startDateString = binding.habitStartDateEditText.text.toString()
 
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val startDate: Date = try {
+                dateFormat.parse(startDateString)
+                    ?: throw IllegalArgumentException("Invalid date format")
+            } catch (e: Exception) {
+                null
+            } ?: return@setOnClickListener
+
+            val newHabit = Habit(name, startDate)
+            val currentHabits = viewModel.habitList.value?.toMutableList() ?: mutableListOf()
+            currentHabits.add(newHabit)
+            viewModel.habitList.value = currentHabits
         }
+
     }
 }
