@@ -10,7 +10,7 @@ import com.example.habittracker.repository.HabitRepository
 import kotlinx.coroutines.launch
 
 class HabitViewModel(application: Application) : AndroidViewModel(application) {
-    private val habitRepository = HabitRepository()  // No arguments passed here
+    private val habitRepository = HabitRepository()
 
     private val _habitList = MutableLiveData<List<Habit>>()
     val habitList: LiveData<List<Habit>> = _habitList

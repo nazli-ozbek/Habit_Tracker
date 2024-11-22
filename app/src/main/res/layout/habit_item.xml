@@ -38,9 +38,20 @@
             android:id="@+id/habitDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:formattedDate="@{habit.startDate}"
+            app:formattedDate="@{habit.date}"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/habitDescriptionTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/streakTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"STREAK: " + habit.streak + " DAYS!"}'
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/habitDateTextView"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp" />
