@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habittracker.data.model.Habit
-import com.example.habittracker.databinding.HabitItemBinding // Updated binding class
-import java.text.SimpleDateFormat
-import java.util.*
+import com.example.habittracker.databinding.HabitItemBinding
 
 class HabitAdapter : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
 
     private var habitList = listOf<Habit>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
-        val binding = HabitItemBinding.inflate(LayoutInflater.from(parent.context), parent, false) // Updated binding
+        val binding = HabitItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HabitViewHolder(binding)
     }
 
@@ -33,12 +31,6 @@ class HabitAdapter : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
 
         fun bind(habit: Habit) {
             binding.habit = habit
-
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formattedDate = habit.startDate?.let { dateFormat.format(it) } ?: "No Date"
-
-            binding.habitDateTextView.text = formattedDate
-
             binding.executePendingBindings()
         }
     }

@@ -6,8 +6,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("formattedDate")
-fun bindFormattedDate(textView: TextView, date: Date?) {
+fun bindFormattedDate(textView: TextView, dateString: String?) {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val formattedDate = date?.let { dateFormat.format(it) } ?: "No Date"
+    val formattedDate = dateString?.let {
+        try {
+            val date = dateFormat.parse(it)
+            date?.let { dateFormat.format(date) } ?: "Invalid Date"
+        } catch (e: Exception) {
+            "Invalid Date"
+        }
+    } ?: "No Date"
     textView.text = formattedDate
 }
