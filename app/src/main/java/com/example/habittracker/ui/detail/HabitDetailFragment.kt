@@ -48,8 +48,8 @@ class HabitDetailFragment : Fragment() {
             return
         }
 
-        if (!habitDate.matches(Regex("\\d{4}-\\d{2}-\\d{2}"))) {
-            Toast.makeText(context, "Invalid date format! Use YYYY-MM-DD.", Toast.LENGTH_SHORT).show()
+        if (!habitDate.matches(Regex("\\d{2}-\\d{2}-\\d{4}"))) {
+            Toast.makeText(context, "Invalid date format! Use DD-MM-YYYY.", Toast.LENGTH_SHORT).show()
             return
         }
 
