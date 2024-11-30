@@ -4,6 +4,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
+    <!-- Login Fragment -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.habittracker.ui.login.LoginFragment"
@@ -16,15 +17,22 @@
             app:destination="@id/mainFragment" />
     </fragment>
 
+    <!-- Register Fragment -->
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.habittracker.ui.RegisterFragment"
         android:label="Register">
+        <!-- Navigate back to Login -->
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <!-- Navigate to Main -->
+        <action
+            android:id="@+id/action_registerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 
+    <!-- Main Fragment -->
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.habittracker.ui.MainFragment"
@@ -34,6 +42,7 @@
             app:destination="@id/habitDetailFragment" />
     </fragment>
 
+    <!-- Habit Detail Fragment -->
     <fragment
         android:id="@+id/habitDetailFragment"
         android:name="com.example.habittracker.ui.detail.HabitDetailFragment"
@@ -42,4 +51,6 @@
             android:id="@+id/action_habitDetailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+
+
 </navigation>

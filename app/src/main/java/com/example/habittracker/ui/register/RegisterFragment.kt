@@ -37,6 +37,11 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+        binding.homeButton.setOnClickListener {
+            // Navigate back to LoginFragment
+            view?.findNavController()
+                ?.navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+        }
 
         return binding.root
     }

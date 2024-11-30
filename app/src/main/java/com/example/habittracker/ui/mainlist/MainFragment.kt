@@ -22,6 +22,7 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
+
         return binding.root
     }
 
@@ -42,5 +43,6 @@ class MainFragment : Fragment() {
         binding.addHabitButton.setOnClickListener {
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHabitDetailFragment())
         }
+
     }
 }

@@ -1,11 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_background"
     tools:context=".ui.detail.HabitDetailFragment">
+
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create a New Habit"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
 
     <EditText
         android:id="@+id/habitNameEditText"
@@ -13,13 +28,17 @@
         android:layout_height="wrap_content"
         android:hint="Habit Name"
         android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:textColor="@color/dark_text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="16dp" />
+
 
     <EditText
         android:id="@+id/habitDescriptionEditText"
@@ -27,14 +46,17 @@
         android:layout_height="wrap_content"
         android:hint="Habit Description"
         android:inputType="textMultiLine"
-        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:textColor="@color/dark_text"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/habitNameEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="16dp" />
+
 
     <EditText
         android:id="@+id/habitDateEditText"
@@ -42,22 +64,51 @@
         android:layout_height="wrap_content"
         android:hint="Habit Date (e.g., YYYY-MM-DD)"
         android:inputType="text"
-        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:textColor="@color/dark_text"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/habitDescriptionEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="16dp" />
+
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Save Habit"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/primary"
+        android:padding="12dp"
+        android:elevation="6dp"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/habitDateEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
+
+    <Button
+        android:id="@+id/returnHomeButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/secondary"
+        android:padding="12dp"
+        android:elevation="6dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,28 +11,40 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#F9F9F9"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
 
         <TextView
             android:id="@+id/habitNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{habit.name}"
             android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="8dp" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
         <TextView
             android:id="@+id/habitDescriptionTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{habit.description}"
             android:textSize="14sp"
+            android:textColor="#757575"
             app:layout_constraintTop_toBottomOf="@id/habitNameTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
 
         <TextView
             android:id="@+id/habitDateTextView"
@@ -40,10 +52,11 @@
             android:layout_height="wrap_content"
             app:formattedDate="@{habit.date}"
             android:textSize="14sp"
+            android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/habitDescriptionTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="8dp" />
+
 
         <TextView
             android:id="@+id/streakTextView"
@@ -51,10 +64,11 @@
             android:layout_height="wrap_content"
             android:text='@{"STREAK: " + habit.streak + " DAYS!"}'
             android:textSize="14sp"
+            android:textStyle="italic"
+            android:textColor="#6200EE"
             app:layout_constraintTop_toBottomOf="@id/habitDateTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="8dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

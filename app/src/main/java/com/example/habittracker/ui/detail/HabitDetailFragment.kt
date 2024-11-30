@@ -32,8 +32,13 @@ class HabitDetailFragment : Fragment() {
         habitDescriptionEditText = view.findViewById(R.id.habitDescriptionEditText)
         habitDateEditText = view.findViewById(R.id.habitDateEditText)
         saveButton = view.findViewById(R.id.saveButton)
+        val returnHomeButton: Button = view.findViewById(R.id.returnHomeButton)
 
         saveButton.setOnClickListener { saveHabit() }
+
+        returnHomeButton.setOnClickListener {
+            findNavController().navigate(R.id.action_habitDetailFragment_to_mainFragment)
+        }
 
         return view
     }
