@@ -19,7 +19,7 @@ data class Habit(
 
     private fun calculateStreak(startDateString: String?): String {
         return startDateString?.let {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val startDate = dateFormat.parse(it)
 
             startDate?.let { date ->

@@ -72,7 +72,7 @@
         android:id="@+id/habitDateEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Habit Date (e.g., YYYY-MM-DD)"
+        android:hint="Habit Date (DD-MM-YYYY)"
         android:inputType="text"
         android:background="@drawable/white_background"
         android:padding="12dp"

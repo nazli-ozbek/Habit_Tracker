@@ -7,7 +7,7 @@ import java.util.*
 
 @BindingAdapter("formattedDate")
 fun bindFormattedDate(textView: TextView, dateString: String?) {
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
     val formattedDate = dateString?.let {
         try {
             val date = dateFormat.parse(it)
