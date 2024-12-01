@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.habittracker.R
 import com.example.habittracker.databinding.FragmentRegisterBinding
 import com.example.habittracker.viewmodel.UserViewModel
 
@@ -24,6 +26,8 @@ class RegisterFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        applyAnimations()
 
         binding.registerButton.setOnClickListener {
             val username = binding.registerUsernameEditText.text.toString()
@@ -44,5 +48,18 @@ class RegisterFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun applyAnimations() {
+        val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val bottomDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down)
+
+        binding.backgroundShape.startAnimation(bottomDown)
+        binding.loginTitleTextView.startAnimation(fadeIn)
+        binding.registerUsernameEditText.startAnimation(fadeIn)
+        binding.registerPasswordEditText.startAnimation(fadeIn)
+        binding.homeButton.startAnimation(fadeIn)
+        binding.registerButton.startAnimation(fadeIn)
+        binding.habitTrackerLogo.startAnimation(fadeIn)
     }
 }

@@ -1,8 +1,11 @@
 package com.example.habittracker.adapter
 
+import android.animation.ObjectAnimator
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.example.habittracker.R
 import com.example.habittracker.data.model.Habit
 import com.example.habittracker.databinding.HabitItemBinding
 
@@ -18,6 +21,28 @@ class HabitAdapter : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
         val habit = habitList[position]
         holder.bind(habit)
+
+        val backgroundView = holder.binding.root
+        backgroundView.alpha = 0f
+
+        val fadeInBackground = ObjectAnimator.ofFloat(backgroundView, "alpha", 0f, 1f)
+        fadeInBackground.duration = 600
+
+        fadeInBackground.startDelay = 300L * position
+
+        fadeInBackground.start()
+
+        val fadeIn = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in)
+
+        holder.binding.habitNameTextView.startAnimation(fadeIn)
+        holder.binding.habitDescriptionTextView.startAnimation(fadeIn)
+        holder.binding.habitDateTextView.startAnimation(fadeIn)
+        holder.binding.streakTextView.startAnimation(fadeIn)
+        holder.binding.dividerView.startAnimation(fadeIn)
+
+        holder.binding.habitNameTextView.startAnimation(fadeIn.apply {
+            startOffset = 500L * position
+        })
     }
 
     override fun getItemCount(): Int = habitList.size
@@ -27,7 +52,7 @@ class HabitAdapter : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class HabitViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class HabitViewHolder(val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(habit: Habit) {
             binding.habit = habit

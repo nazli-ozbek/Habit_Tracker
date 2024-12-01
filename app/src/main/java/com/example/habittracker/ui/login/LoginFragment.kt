@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -26,6 +27,7 @@ class LoginFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        applyAnimations()
 
         binding.loginButton.setOnClickListener {
             val username = binding.usernameEditText.text.toString()
@@ -49,5 +51,18 @@ class LoginFragment : Fragment() {
 
     private fun showErrorMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun applyAnimations() {
+        val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val bottomDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down)
+
+        binding.backgroundShape.startAnimation(bottomDown)
+        binding.loginTitleTextView.startAnimation(fadeIn)
+        binding.usernameEditText.startAnimation(fadeIn)
+        binding.passwordEditText.startAnimation(fadeIn)
+        binding.loginButton.startAnimation(fadeIn)
+        binding.registerButton.startAnimation(fadeIn)
+        binding.habitTrackerLogo.startAnimation(fadeIn)
     }
 }

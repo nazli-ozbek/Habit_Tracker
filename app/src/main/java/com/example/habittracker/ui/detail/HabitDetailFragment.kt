@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -33,6 +34,17 @@ class HabitDetailFragment : Fragment() {
         habitDateEditText = view.findViewById(R.id.habitDateEditText)
         saveButton = view.findViewById(R.id.saveButton)
         val returnHomeButton: Button = view.findViewById(R.id.returnHomeButton)
+        val backgroundShape: View = view.findViewById(R.id.backgroundShape)
+
+        val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down)
+
+        backgroundShape.startAnimation(slideDown)
+        habitNameEditText.startAnimation(fadeIn)
+        habitDescriptionEditText.startAnimation(fadeIn)
+        habitDateEditText.startAnimation(fadeIn)
+        saveButton.startAnimation(fadeIn)
+        returnHomeButton.startAnimation(fadeIn)
 
         saveButton.setOnClickListener { saveHabit() }
 

@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F9F9F9"
+        android:background="@drawable/gradient_background2"
         android:padding="16dp"
         android:elevation="4dp"
         android:layout_marginBottom="8dp"
@@ -25,9 +25,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{habit.name}"
-            android:textSize="18sp"
+            android:textSize="40sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="#336dda"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -38,8 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{habit.description}"
-            android:textSize="14sp"
-            android:textColor="#757575"
+            android:textSize="16sp"
+            android:textColor="#3d3d3d"
             app:layout_constraintTop_toBottomOf="@id/habitNameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             app:formattedDate="@{habit.date}"
             android:textSize="14sp"
-            android:textColor="#000000"
+            android:textColor="@color/secondary"
             app:layout_constraintTop_toBottomOf="@id/habitDescriptionTextView"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp" />
@@ -69,6 +69,19 @@
             app:layout_constraintTop_toBottomOf="@id/habitDateTextView"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp" />
+
+
+        <View
+            android:id="@+id/dividerView"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/secondary"
+            app:layout_constraintTop_toBottomOf="@+id/streakTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

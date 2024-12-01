@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.habittracker.R
 import com.example.habittracker.adapter.HabitAdapter
 import com.example.habittracker.databinding.FragmentMainBinding
 import com.example.habittracker.viewmodel.HabitViewModel
@@ -39,6 +41,11 @@ class MainFragment : Fragment() {
         }
 
         viewModel.fetchHabits()
+
+        val bottom_down = AnimationUtils.loadAnimation(context, R.anim.bottom_down)
+        val fade_in = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        binding.habitTrackerLogo.startAnimation(bottom_down)
+        binding.addHabitButton.startAnimation(fade_in)
 
         binding.addHabitButton.setOnClickListener {
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHabitDetailFragment())
