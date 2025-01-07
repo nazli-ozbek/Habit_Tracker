@@ -10,10 +10,7 @@ class HabitRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
 
     suspend fun getHabits(): List<Habit> {
-        val userId = firebaseAuth.currentUser?.uid
-        if (userId == null) {
-            return emptyList()
-        }
+        val userId = firebaseAuth.currentUser?.uid ?: return emptyList()
 
         return try {
             val snapshot = firestore.collection("habits")
@@ -21,11 +18,28 @@ class HabitRepository {
                 .get()
                 .await()
 
-            snapshot.documents.map { document ->
-                document.toObject(Habit::class.java) ?: Habit()
+            snapshot.documents.mapNotNull { document ->
+                document.toObject(Habit::class.java)
             }
         } catch (e: Exception) {
             emptyList()
+        }
+    }
+
+    suspend fun deleteHabit(habit: Habit) {
+        try {
+            val userId = firebaseAuth.currentUser?.uid ?: return
+            val snapshot = firestore.collection("habits")
+                .whereEqualTo("name", habit.name)
+                .whereEqualTo("userId", userId)
+                .get()
+                .await()
+
+            for (document in snapshot.documents) {
+                document.reference.delete().await()
+            }
+        } catch (e: Exception) {
+
         }
     }
 }

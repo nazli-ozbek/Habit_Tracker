@@ -4,53 +4,60 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
-    <!-- Login Fragment -->
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.habittracker.ui.login.LoginFragment"
         android:label="Login">
+
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 
-    <!-- Register Fragment -->
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.habittracker.ui.RegisterFragment"
         android:label="Register">
-        <!-- Navigate back to Login -->
+
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-        <!-- Navigate to Main -->
+
         <action
             android:id="@+id/action_registerFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 
-    <!-- Main Fragment -->
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.habittracker.ui.MainFragment"
         android:label="Main">
+
         <action
             android:id="@+id/action_mainFragment_to_habitDetailFragment"
             app:destination="@id/habitDetailFragment" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
-    <!-- Habit Detail Fragment -->
+
     <fragment
         android:id="@+id/habitDetailFragment"
         android:name="com.example.habittracker.ui.detail.HabitDetailFragment"
         android:label="Habit Detail">
+
         <action
             android:id="@+id/action_habitDetailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
-
 
 </navigation>

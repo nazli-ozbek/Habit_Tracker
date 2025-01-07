@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">HabitTracker</string>
+    <string name="delete">X</string>
+    <string name="add_habit">Add Habit</string>
+    <string name="quit">Quit</string>
+    <string name="habit_name_label">Habit Name</string>
+    <string name="habit_description_label">Habit Description</string>
+    <string name="habit_date_label">Date</string>
+    <string name="error_saving_habit">Error saving habit</string>
+    <string name="habit_saved">Habit saved!</string>
+    <string name="fill_all_fields">Please fill all required fields</string>
+    <string name="invalid_date_format">Invalid date format! Use DD-MM-YYYY.</string>
+    <string name="streak">STREAK: %1$s DAYS!</string>
+    <string name="delete_habit">Delete</string>
+    <string name="delete_habit_description">Tap to delete this habit</string>
+
+
 </resources>

@@ -24,7 +24,6 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
-
         return binding.root
     }
 
@@ -32,9 +31,14 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        val adapter = HabitAdapter { habitToDelete ->
+
+            viewModel.deleteHabit(habitToDelete)
+        }
+
         binding.habitsRecyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = HabitAdapter()
         binding.habitsRecyclerView.adapter = adapter
+
 
         viewModel.habitList.observe(viewLifecycleOwner) { habits ->
             adapter.submitList(habits)
@@ -42,14 +46,15 @@ class MainFragment : Fragment() {
 
         viewModel.fetchHabits()
 
-        val bottom_down = AnimationUtils.loadAnimation(context, R.anim.bottom_down)
-        val fade_in = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-        binding.habitTrackerLogo.startAnimation(bottom_down)
-        binding.addHabitButton.startAnimation(fade_in)
+
+        val bottomDown = AnimationUtils.loadAnimation(context, R.anim.bottom_down)
+        val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        binding.habitTrackerLogo.startAnimation(bottomDown)
+        binding.addHabitButton.startAnimation(fadeIn)
+
 
         binding.addHabitButton.setOnClickListener {
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHabitDetailFragment())
         }
-
     }
 }

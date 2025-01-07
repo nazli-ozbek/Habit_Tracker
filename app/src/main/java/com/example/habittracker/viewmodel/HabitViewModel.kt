@@ -21,5 +21,11 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
             _habitList.value = habits
         }
     }
-}
 
+    fun deleteHabit(habit: Habit) {
+        viewModelScope.launch {
+            habitRepository.deleteHabit(habit)
+            fetchHabits()
+        }
+    }
+}
