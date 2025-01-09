@@ -6,11 +6,11 @@ import com.google.firebase.auth.FirebaseAuth
 class UserViewModel : ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    var username: String = ""
+    var email: String = ""
     var password: String = ""
 
-    fun register(username: String, password: String, onComplete: (Boolean, String?) -> Unit) {
-        auth.createUserWithEmailAndPassword(username, password)
+    fun register(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onComplete(true, null)
@@ -20,8 +20,8 @@ class UserViewModel : ViewModel() {
             }
     }
 
-    fun login(username: String, password: String, onComplete: (Boolean, String?) -> Unit) {
-        auth.signInWithEmailAndPassword(username, password)
+    fun login(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onComplete(true, null)

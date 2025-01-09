@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{habit.name}"
-                android:textSize="18sp"
+                android:fontFamily="@font/adlam_display"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary"
                 tools:text="Habit Title" />
@@ -39,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{habit.description}"
-                android:textSize="14sp"
+                android:fontFamily="@font/adlam_display"
+                android:textSize="16sp"
                 android:textColor="@color/secondary"
                 android:layout_marginTop="4dp"
                 tools:text="Description of the habit" />
@@ -49,20 +51,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text='@{"Streak: " + habit.streak + " days"}'
-                android:textSize="20sp"
+                android:fontFamily="@font/adlam_display"
+                android:textSize="16sp"
                 android:textColor="@color/primary"
                 android:layout_marginTop="4dp"
                 tools:text="Streak: 5 days" />
 
             <Button
                 android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
+                android:layout_width="71dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@string/delete_habit"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                tools:text="Delete" />
+                android:backgroundTint="@color/primary"
+                android:drawableLeft="@drawable/outline_delete_outline_24"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/white"
+                android:paddingEnd="10dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

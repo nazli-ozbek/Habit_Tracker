@@ -29,5 +29,4 @@ data class Habit(
             } ?: "0"
         } ?: "0"
     }
-
 }

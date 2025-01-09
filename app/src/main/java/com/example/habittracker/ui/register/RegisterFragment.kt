@@ -30,10 +30,10 @@ class RegisterFragment : Fragment() {
         applyAnimations()
 
         binding.registerButton.setOnClickListener {
-            val username = binding.registerUsernameEditText.text.toString()
+            val email = binding.registerEmailEditText.text.toString()
             val password = binding.registerPasswordEditText.text.toString()
 
-            viewModel.register(username, password) { success, error ->
+            viewModel.register(email, password) { success, error ->
                 if (success) {
                     view?.findNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
                 } else {
@@ -56,7 +56,7 @@ class RegisterFragment : Fragment() {
 
         binding.backgroundShape.startAnimation(bottomDown)
         binding.loginTitleTextView.startAnimation(fadeIn)
-        binding.registerUsernameEditText.startAnimation(fadeIn)
+        binding.registerEmailEditText.startAnimation(fadeIn)
         binding.registerPasswordEditText.startAnimation(fadeIn)
         binding.homeButton.startAnimation(fadeIn)
         binding.registerButton.startAnimation(fadeIn)

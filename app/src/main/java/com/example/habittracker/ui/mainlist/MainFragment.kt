@@ -48,9 +48,14 @@ class MainFragment : Fragment() {
         val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in)
         binding.habitTrackerLogo.startAnimation(bottomDown)
         binding.addHabitButton.startAnimation(fadeIn)
+        binding.homeButton.startAnimation(fadeIn)
 
         binding.addHabitButton.setOnClickListener {
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHabitDetailFragment())
+        }
+
+        binding.homeButton.setOnClickListener {
+            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLoginFragment())
         }
     }
 }

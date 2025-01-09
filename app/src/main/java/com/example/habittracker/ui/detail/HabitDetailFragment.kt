@@ -26,7 +26,7 @@ class HabitDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_habit_detail, container, false)
 
         habitNameEditText = view.findViewById(R.id.habitNameEditText)
@@ -34,9 +34,17 @@ class HabitDetailFragment : Fragment() {
         habitDateEditText = view.findViewById(R.id.habitDateEditText)
         saveButton = view.findViewById(R.id.saveButton)
         val returnHomeButton: Button = view.findViewById(R.id.returnHomeButton)
+        val backgroundShape: View = view.findViewById(R.id.backgroundShape)
 
         val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
         val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down)
+
+        backgroundShape.startAnimation(slideDown)
+        habitNameEditText.startAnimation(fadeIn)
+        habitDescriptionEditText.startAnimation(fadeIn)
+        habitDateEditText.startAnimation(fadeIn)
+        saveButton.startAnimation(fadeIn)
+        returnHomeButton.startAnimation(fadeIn)
 
         saveButton.setOnClickListener { saveHabit() }
 
